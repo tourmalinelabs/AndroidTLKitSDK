@@ -3,8 +3,9 @@
   <groupId>com.tourmalinelabs.android</groupId>
   <artifactId>TLKit</artifactId>
   <versioning>
-    <release>8.1.17051700</release>
+    <release>9.0.17061900</release>
     <versions>
+      <version>9.0.17061900</version>
       <version>8.1.17051700</version>
       <version>8.0.17042000</version>
       <version>7.1.17040502</version>

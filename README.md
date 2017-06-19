@@ -1,8 +1,347 @@
-# AndroidTLKitSDK
-Repository for the TLKit Android SDK artifacts.
+# TLKit
 
-To get started see the (README for example application)(https://github.com/tourmalinelabs/AndroidTLKitExample/blob/master/README.md)
-
-More detailed documentation can be found in the
+This document contains a quick start guide for integrating TLKit 
+into your Android application. More detailed documentation can be found in the
 [Online documentation](http://docs.api.tl/android/) and 
 [API docs](http://docs.api.tl/android/api/).
+
+# Sample Project
+Checkout our sample project 
+[AndroidTLKitExample](https://github.com/tourmalinelabs/AndroidTLKitExample) for
+a simple working example of how developers can use TLKit. 
+
+# Integrating TLKit into a project
+
+## 1 / Add the TLKit library 
+Modify the project  `build.gradle` file as follows.
+
+##### Add the TLKIT artifact's repository
+
+```groovy
+repositories {
+    maven{ url 'https://raw.githubusercontent.com/tourmalinelabs/AndroidTLKitSDK/master'}
+}
+```    
+*Add this repository section directly at the top level of the `build.gradle` and not under the `buildscript` section.*
+
+##### Add the TLKit as a dependency.
+
+```groovy
+dependencies {
+    compile ("com.tourmalinelabs.android:TLKit:8.0.17042000@aar") { transitive=true }
+}
+```
+*The transitive directive allows your project to automatically include the TLKIT dependencies.*
+
+## 2 / Add user permissions 
+
+### Manifest Permissions
+
+Add the following the following permissions to the project `Manifest.xml`.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+...
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+....
+</manifest>
+```
+
+### Requesting permissions in app
+For Android versions 6 and above the application also needs to explicitly ask 
+for a set of permissions from the user. `Engine.MissingPermissions` provides a
+list of the required permissions that can be passed to 
+`ActivityCompat.requestPermissions`
+
+# Using TLKit
+
+The heart of the TLKit is the Context Engine. The engine needs to 
+be initialized with some user information and a drive detection mode in order to
+use any of its features. 
+
+## User information 
+
+There are two types of user information that can be used to initialize the 
+engine: 
+  1. A SHA-256 hash of some user id. Currently only hashes of emails are allowed
+  but other TL approved ids could be used.
+  2. An application specific username and password. 
+  
+The first type of user info is appropriate for cases where the SDK is used only
+for data collection. The second type is useful in cases where the application 
+wants to access the per user information and provide password protected access
+to it to it's users. 
+
+## Automatic and manual modes
+
+The engine can be initialized for either automatic drive detection where the SDK
+will automatically detect and monitor drives or a manual drive detection where 
+the SDK will only monitor drives when explicitly told to by the application.
+
+The first mode is useful in cases where the user is not interacting with the 
+application to start and end drives. While the second mode is useful when the 
+user will explicitly start and end drives in the application.
+
+## Engine is a foreground service
+The engine is an Android foreground service. All foreground services are 
+permanently displayed in the device notification area. For this reason it needs 
+to be initialized with a Notification object to inform the user about the 
+purpose of the application you are building. The notification is created with 
+the following code and must be given at the engine initialization:
+
+```java
+final Intent notificationIntent = new Intent(this, ExampleApplication.class);
+final PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent, 0);
+final Notification note = new Notification.Builder(this)
+                .setContentTitle(getText(R.string.app_name))
+                .setContentText(getText(R.string.foreground_notification_content_text))
+                .setSmallIcon(R.mipmap.ic_foreground_notification)
+                .setContentIntent(pendingIntent)
+                .build();
+```
+
+## Example initialization with SHA-256 hash in automatic mode
+The below examples demonstrate initialization with just a SHA-256 hash. The 
+example application provides code for generating this hash.
+
+Once started in this mode the engine is able to automatically detect and record 
+all drives.
+
+```java
+Engine.Init( getApplicationContext(),
+             ApiKey,
+             HashId( "androidexample@tourmalinelabs.com" ),
+             true, // set to `false` for manual mode
+             note,
+             new CompletionListener() {
+                @Override
+           		public void OnSuccess() {}
+                @Override
+                public void OnFail( int i, String s ) {} );
+```
+
+#### Starting a new drive
+
+In manual mode you can start a new drive by calling:
+
+```java
+final UUID uuid = ActivityManager.StartManualTrip();
+```
+
+When starting a new drive you receive an id in return. 
+
+#### Stoping a drive
+
+For stopping a drive you need to call StopManualTrip with the right id.
+
+```java
+ActivityManager.StopManualTrip(uuid);
+```
+
+Note that until a drive is explicitly stopped it will continue to record data.
+Even if the SDK is restarted, it will continue to record data for any trips that
+it was recording.
+
+#### Current manual drives
+
+The application can query the list of any drives being required as follows.
+
+```java
+final ArrayList<Drive> manualDrives = ActivityManager.ActiveManualDrives();
+```
+
+### Destroying the engine
+
+Once initialized there is no reason to destroy the `Engine` unless you need to 
+set a new `AuthMgr` for a different user or need to switch between manual and 
+automatic modes. In those cases, the engine can be destroyed as follows:
+
+```java
+Engine.Destroy(getApplicationContext(), 
+               new CompletionListener() {
+                    @Override
+                    public void OnSuccess() {
+                        Log.d(TAG, "Engine destroyed.");
+                    }
+                    @Override
+                    public void OnFail( int i, String s ) {
+                        Log.e(TAG, "Engine destruction failed.");
+                    }
+             });
+```
+
+## Listening for Engine state changes
+
+In addition to the completion listeners the engine also locally 
+broadcasts lifecycle events which can be subscribed to via the 
+`Engine.ACTION_LIFECYCLE` action as shown below. 
+
+It is recommended to use this intent to register any listeners with the engine.
+This is because in event of an unexpected application termination the lifecycle 
+registered listeners will be lost. When the engine automatically
+restarts with the app the intent will be the only notification that the engine 
+is running.
+
+```java
+final LocalBroadcastManager mgr = LocalBroadcastManager.getInstance((getApplicationContext());
+mgr.registerReceiver(
+        new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent i) {
+                int state = i.getIntExtra("state", Engine.INIT_SUCCESS);
+                if( state == Engine.INIT_SUCCESS) {
+                    Log.i(TAG, "ENGINE INIT SUCCESS");
+                } else if (state == Engine.INIT_REQUIRED) {
+                    Log.i( TAG,"ENGINE INIT REQUIRED: Engine needs to restart in background...");
+                    Engine.Init( getApplicationContext(),
+                    		     note,
+                                 ApiKey,
+                                 new DefaultAuthMgr("example@tourmalinelabs.com", "password"),
+                                 new CompletionListener() {
+                                    @Override
+                                    public void OnSuccess() {}
+                                    @Override
+                                    public void OnFail( int i, String s ) {}
+                                 });
+                } else if (state == Engine.INIT_FAILURE) {
+                    final String msg = i.getStringExtra("message");
+                    final int reason = i.getIntExtra("reason", 0);
+                    Log.e(TAG, "ENGINE INIT FAILURE" + reason + ": " + msg);
+                }
+            }
+        },
+        new IntentFilter(Engine.ACTION_LIFECYCLE));
+    }
+```
+
+## Drive monitoring API
+
+Listeners can be registered to receive Drive events.
+
+###  Registering for drive events 
+
+Register a drive listener can be done as follows:
+
+```java
+ActivityListener listener = new ActivityListener() {
+    @Override
+    public void OnEvent( ActivityEvent e ) { 
+    	Log.d("ActivityListener", "Activity event received: " + e ); 
+    }
+
+    @Override
+    public void RegisterSucceeded() { 
+    	Log.d("ActivityListener", "registered!" ); 
+    }
+
+    @Override
+    public void RegisterFailed( int e ) { 
+    	Log.e("ActivityListener", "register failed w/reason " + reason + " :)" ); 
+    }
+};
+ActivityManager.RegisterDriveListener(listener);
+```        
+
+Multiple listeners can be registered via this API and all listeners will
+received the same events.
+
+_Note:_ Multiple events may be received for the same drive as the drive 
+progresses and the drive processing updates the drive with more accurate
+map points.
+
+To stop receiving drive monitoring unregister the listener as follows:
+
+```java
+ActivityManager.UnregisterDriveListener(listener);
+```      
+
+### Querying drive history
+
+Some amount of drives are available for querying as follows.
+
+```java 
+ActivityManager.GetDrives( new Date(0L),
+                           new Date(),
+                           20,
+                           new QueryHandler<ArrayList<Drive>>() {
+    @Override
+    public void Result( ArrayList<Drive> drives ) {
+        Log.d("DriveMonitor", "Recorded drives:");
+            for (Drive drive  : drives) {
+                Log.d("DriveMonitor", drive.toString());
+            }
+    }
+
+    @Override
+    public void OnFail( int i, String s ) {
+        Log.e("DriveMonitor", "Query failed with err: " + i );
+    }
+});
+```
+
+## Location monotioring API
+
+TLKit provides lower power location updates than traditional GPS 
+only solutions.
+    
+### Registering for location updates
+
+A listener can be registered as follows.
+
+```java 
+LocationListener listener = new LocationListener() {
+    @Override
+    public void OnLocationUpdated (Location l) {
+        Log.d("Location listener", "Location received: " + l );
+    }
+
+    @Override
+    public void RegisterSucceeded () {
+        Log.d("Location listener", "registered! ");
+
+    }
+
+    @Override
+    public void RegisterFailed (int reason) {
+        Log.e("Location listener",
+              "register failed w/reason " + reason + " :)"  );
+    }
+};
+LocationManager.RegisterLocationListener(listener);
+``` 
+
+A listener can be unregistered as follows:
+
+```java
+LocationManager.UnregisterLocationListener(listener);
+```
+
+
+### Querying location history
+
+TLKit provides the ability to query past locations via 
+`QueryLocations` method of the Engine. These can be used as follows:
+
+```java 
+LocationManager.QueryLocations(0L, Long.MAX_VALUE, 20, new QueryHandler<ArrayList<Location>>() {
+            @Override
+            public void Result(ArrayList<Location> locations) {
+                Log.d( "QueryLocations", "Recorded locations" );
+        			for( Location location: locations ) {
+            			Log.d("QueryLocations", location.toString() );
+        			}
+            }
+
+            @Override
+            public void OnFail(int i, String s) {
+				Log.e("QueryLocations", "Query failed with err: " + i );
+            }
+        });
+```
+

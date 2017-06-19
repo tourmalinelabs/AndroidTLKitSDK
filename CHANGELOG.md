@@ -1,5 +1,11 @@
 # TLKit Change Log
 
+## 9.0.17061900
+* SHA-256 hashes of emails now supported as user ids.
+* Reworked  `Engine` `Init` methods remove need for standalone authorization 
+  manager, eliminates seperate methods for starting in manual or automatic
+  drive detection:
+
 ## 8.1.17051700
 * Improved handling for Doze mode in newer versions of Android.
 * Route computation improvements
