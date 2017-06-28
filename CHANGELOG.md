@@ -1,5 +1,9 @@
 # TLKit Change Log
 
+## 9.0.17062800
+* Several improvements
+* Fix: no locations events when registering only to the LocationManager
+
 ## 9.0.17061900
 * SHA-256 hashes of emails now supported as user ids.
 * Reworked  `Engine` `Init` methods remove need for standalone authorization 
