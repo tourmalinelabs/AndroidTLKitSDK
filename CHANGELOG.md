@@ -1,5 +1,9 @@
 # TLKit Change Log
 
+## 9.1.17071700
+* Improved stability.
+* Reduced network usage.
+
 ## 9.0.17062800
 * Several improvements
 * Fix: no locations events when registering only to the LocationManager
