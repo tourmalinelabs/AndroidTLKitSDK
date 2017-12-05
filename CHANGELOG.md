@@ -1,5 +1,13 @@
 # TLKit Change Log
 
+## 10.3.17110301
+* Allows TLKit to start even without location permissions (fix possible missing trips)
+* Detect and broadcast power save mode settings update
+* Detect and broadcast global device location settings update
+* Detect and broadcast application location permission settings update
+* Foreground notification ID made public (TLKit users can now dynamically update the foreground service notification)
+* Stability improvements.
+
 ## 10.1.17083000
 * Stability improvements.
 
