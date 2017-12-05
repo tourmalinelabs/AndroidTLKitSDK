@@ -96,14 +96,19 @@ purpose of the application you are building. The notification is created with
 the following code and must be given at the engine initialization:
 
 ```java
-final Intent notificationIntent = new Intent(this, ExampleApplication.class);
-final PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent, 0);
-final Notification note = new Notification.Builder(this)
-                .setContentTitle(getText(R.string.app_name))
-                .setContentText(getText(R.string.foreground_notification_content_text))
-                .setSmallIcon(R.mipmap.ic_foreground_notification)
-                .setContentIntent(pendingIntent)
-                .build();
+final String NOTIF_CHANNEL_ID = "background-run-notif-channel-id";
+if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+    final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+    final NotificationChannel channel = new NotificationChannel(NOTIF_CHANNEL_ID, getText(R.string.foreground_notification_content_text), NotificationManager.IMPORTANCE_NONE);
+    channel.setShowBadge(false);
+    notificationManager.createNotificationChannel(channel);
+}
+final Notification note = new NotificationCompat.Builder(this, NOTIF_CHANNEL_ID)
+        .setContentTitle(getText(R.string.app_name))
+        .setContentText(getText(R.string.foreground_notification_content_text))
+        .setSmallIcon(R.mipmap.ic_foreground_notification)
+        .setPriority(NotificationCompat.PRIORITY_MIN)
+        .build();
 ```
 
 ## Example initialization with SHA-256 hash in automatic mode
