@@ -1,5 +1,10 @@
 # TLKit Change Log
 
+## 11.0.17120500
+* Realtime telematics service
+* APIs to register/unregister as telematics event listener
+* APIs to query past telematics events
+
 ## 10.3.17110301
 * Allows TLKit to start even without location permissions (fix possible missing trips)
 * Detect and broadcast power save mode settings update
