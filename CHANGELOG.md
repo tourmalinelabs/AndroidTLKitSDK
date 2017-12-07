@@ -1,5 +1,8 @@
 # TLKit Change Log
 
+## 11.0.17120700
+* Realtime telematics service update
+
 ## 11.0.17120500
 * Realtime telematics service
 * APIs to register/unregister as telematics event listener
