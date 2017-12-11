@@ -1,5 +1,8 @@
 # TLKit Change Log
 
+## 11.0.17121101
+* Realtime telematics service update
+
 ## 11.0.17120700
 * Realtime telematics service update
 
