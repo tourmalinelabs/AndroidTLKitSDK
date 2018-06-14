@@ -1,9 +1,9 @@
 # TOURMALINE LABS SDK LICENSE
 
 This is an agreement between You ("You" or “Licensee”) and Tourmaline Labs, 
-Inc., located at 101 W Broadway, Suite 1120, San Diego, CA, 92101, ("Tourmaline 
-Labs" or “Licensor”) regarding Your use of the Tourmaline Labs SDK and any 
-associated documentation or other materials made available by Tourmaline Labs 
+Inc., located at 4660 La Jolla Village Drive, Suite 875, San Diego, CA 92111, 
+("Tourmaline Labs" or “Licensor”) regarding Your use of the Tourmaline Labs SDK 
+and any associated documentation or other materials made available by Tourmaline Labs 
 (collectively the "SDK"). This agreement applies to any updates or supplements 
 for the SDK, unless other terms accompany those items. If so, those other terms 
 apply.
