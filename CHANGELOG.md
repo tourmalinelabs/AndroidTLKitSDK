@@ -1,5 +1,8 @@
 # TLKit Change Log
 
+## 12.0.18061800
+* Android P compatibility
+
 ## 12.0.18061200
 * Several improvements
 
@@ -41,7 +44,7 @@
 * Despite major version bump there is no backwards compatibility changes.
 * Significant improvement in routing algorithms.
 * Stability improvements.
-* Fixed bug where trip distance wasn't updated until the trip was complete. 
+* Fixed bug where trip distance wasn't updated until the trip was complete.
 
 ## 9.1.17072100
 * Improved stability.
@@ -56,7 +59,7 @@
 
 ## 9.0.17061900
 * SHA-256 hashes of emails now supported as user ids.
-* Reworked  `Engine` `Init` methods remove need for standalone authorization 
+* Reworked  `Engine` `Init` methods remove need for standalone authorization
   manager, eliminates seperate methods for starting in manual or automatic
   drive detection:
 
@@ -70,8 +73,8 @@
 
 ## 8.0.17042000
 * Manual monitoring support
-  * `Engine.Init` has been renamed to `Engine.InitAutomatic()` and 
-  `Engine.InitManual()` has been added to allow starting the SDK in the Manual 
+  * `Engine.Init` has been renamed to `Engine.InitAutomatic()` and
+  `Engine.InitManual()` has been added to allow starting the SDK in the Manual
   mode.
   * `ActivityManager.StartManualTrip()` and `ActivityManager.StopManualTrip()`
   have been added to start and stop manual trips.
@@ -84,7 +87,7 @@
 * Fix where monitoring state was not properly initialzed.
 
 ## 7.0.17032801
-* Fix where some drives were still uploaded even when monitoring was 
+* Fix where some drives were still uploaded even when monitoring was
  turned off.
 
 ## 7.0.17032300
