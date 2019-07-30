@@ -1,5 +1,8 @@
 # TLKit Change Log
 
+## 14.4.19072900
+* Several improvements
+
 ## 12.0.18061800
 * Android P compatibility
 
