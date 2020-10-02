@@ -1,5 +1,9 @@
 # TLKit Change Log
 
+# 15.6.20100100
+* TLKit: fix bug causing incorrect sensor sampling
+* TLKit: Hide Off-Duty Trips - clientConfig (TOUR-6500)
+
 # 15.5.20071700
 * Several improvements
 
