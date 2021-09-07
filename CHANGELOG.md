@@ -1,5 +1,8 @@
 # TLKit Change Log
 
+# 17.2.21090600
+* Several improvements
+
 # 17.1.21082701
 * Several improvements
 
