@@ -1,0 +1,96 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.tourmalinelabs.android",
+    "module": "TLKit",
+    "version": "17.4.21111500",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.7.1",
+      "buildId": "tqp2nw2ycnc6zmx5js2i5uilqe"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "TLKit-17.4.21111500.aar",
+          "url": "TLKit-17.4.21111500.aar",
+          "size": 10269722,
+          "sha512": "fe2697956883d7e3fe7ed7d4ed42f42448af2781801b1259c70aee70f3a2b0281dc62225081f0237f571ce1041cd559ce610d8aa7a66dd4ddddaf9d525977752",
+          "sha256": "a7da6cafe624b27d795be6d0c975fd729ba17725e9a2d912465e6c7ddd6909d1",
+          "sha1": "32429b0fc1ce5f0ec47ff0f4b298c072164a5163",
+          "md5": "7fd92e382f62b287168be33bca278456"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.work",
+          "module": "work-runtime",
+          "version": {
+            "requires": "2.4.0"
+          }
+        },
+        {
+          "group": "androidx.concurrent",
+          "module": "concurrent-futures",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.legacy",
+          "module": "legacy-support-v4",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "androidx.localbroadcastmanager",
+          "module": "localbroadcastmanager",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "com.google.android.gms",
+          "module": "play-services-location",
+          "version": {
+            "requires": "17.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "TLKit-17.4.21111500.aar",
+          "url": "TLKit-17.4.21111500.aar",
+          "size": 10269722,
+          "sha512": "fe2697956883d7e3fe7ed7d4ed42f42448af2781801b1259c70aee70f3a2b0281dc62225081f0237f571ce1041cd559ce610d8aa7a66dd4ddddaf9d525977752",
+          "sha256": "a7da6cafe624b27d795be6d0c975fd729ba17725e9a2d912465e6c7ddd6909d1",
+          "sha1": "32429b0fc1ce5f0ec47ff0f4b298c072164a5163",
+          "md5": "7fd92e382f62b287168be33bca278456"
+        }
+      ]
+    }
+  ]
+}
