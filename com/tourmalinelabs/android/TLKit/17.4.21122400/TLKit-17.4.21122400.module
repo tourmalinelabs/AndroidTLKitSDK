@@ -1,0 +1,89 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.tourmalinelabs.android",
+    "module": "TLKit",
+    "version": "17.4.21122400",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.7.1",
+      "buildId": "gmmkv5okjjda3duzdewak7jdfe"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "TLKit-17.4.21122400.aar",
+          "url": "TLKit-17.4.21122400.aar",
+          "size": 10283784,
+          "sha512": "449565a0ad778a0fb6c2ba7d54ae988326887a41752b9473dc4c53d8c1a64b417af1fa9c0dfc7e647859fdc818abdbce5c70e3a7ccfd693c7d5e0af6d40371b8",
+          "sha256": "5a53312b18b144ed54f5d772f204a801c35d138dc78b250528c29ce563f85398",
+          "sha1": "a166d1482e31383c5114f2f9c04be59ed619ad6b",
+          "md5": "06d0266f22ab45ed3dd97fb4f41261be"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.work",
+          "module": "work-runtime",
+          "version": {
+            "requires": "2.4.0"
+          }
+        },
+        {
+          "group": "androidx.concurrent",
+          "module": "concurrent-futures",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.localbroadcastmanager",
+          "module": "localbroadcastmanager",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "com.google.android.gms",
+          "module": "play-services-location",
+          "version": {
+            "requires": "17.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "TLKit-17.4.21122400.aar",
+          "url": "TLKit-17.4.21122400.aar",
+          "size": 10283784,
+          "sha512": "449565a0ad778a0fb6c2ba7d54ae988326887a41752b9473dc4c53d8c1a64b417af1fa9c0dfc7e647859fdc818abdbce5c70e3a7ccfd693c7d5e0af6d40371b8",
+          "sha256": "5a53312b18b144ed54f5d772f204a801c35d138dc78b250528c29ce563f85398",
+          "sha1": "a166d1482e31383c5114f2f9c04be59ed619ad6b",
+          "md5": "06d0266f22ab45ed3dd97fb4f41261be"
+        }
+      ]
+    }
+  ]
+}
