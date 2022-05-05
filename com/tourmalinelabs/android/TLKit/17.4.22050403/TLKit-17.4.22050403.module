@@ -1,0 +1,81 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.tourmalinelabs.android",
+    "module": "TLKit",
+    "version": "17.4.22050403",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "TLKit-17.4.22050403.aar",
+          "url": "TLKit-17.4.22050403.aar",
+          "size": 10481307,
+          "sha512": "687f6011b1ca7c0e66f3f754aabf484f9ef095351209ca8ba7a8911b12968ea6dd5e66d02a91600f3593ed146f61451a206e06e00cb8d40573fb3bd9706f5c04",
+          "sha256": "045777418e4ae2a2f82884efe5d3bb1bb9597220b5ea24dcedd6f1eeefe2f55b",
+          "sha1": "9639e4259017b6e99b65985073b87c9c31e733f6",
+          "md5": "11330d0c2786356e66fc41a53e43f2d8"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.work",
+          "module": "work-runtime",
+          "version": {
+            "requires": "2.7.1"
+          }
+        },
+        {
+          "group": "androidx.localbroadcastmanager",
+          "module": "localbroadcastmanager",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "com.google.android.gms",
+          "module": "play-services-location",
+          "version": {
+            "requires": "19.0.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "TLKit-17.4.22050403.aar",
+          "url": "TLKit-17.4.22050403.aar",
+          "size": 10481307,
+          "sha512": "687f6011b1ca7c0e66f3f754aabf484f9ef095351209ca8ba7a8911b12968ea6dd5e66d02a91600f3593ed146f61451a206e06e00cb8d40573fb3bd9706f5c04",
+          "sha256": "045777418e4ae2a2f82884efe5d3bb1bb9597220b5ea24dcedd6f1eeefe2f55b",
+          "sha1": "9639e4259017b6e99b65985073b87c9c31e733f6",
+          "md5": "11330d0c2786356e66fc41a53e43f2d8"
+        }
+      ]
+    }
+  ]
+}
