@@ -1,0 +1,102 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.tourmalinelabs.android",
+    "module": "TLKit",
+    "version": "22.3.23101001",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.3"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.work",
+          "module": "work-runtime",
+          "version": {
+            "requires": "2.8.1"
+          }
+        },
+        {
+          "group": "com.google.android.gms",
+          "module": "play-services-location",
+          "version": {
+            "requires": "21.0.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.8.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "TLKit-22.3.23101001.aar",
+          "url": "TLKit-22.3.23101001.aar",
+          "size": 10782292,
+          "sha512": "4d5bf283d0be297c77d7594a53f70caedd0fd9362eeded624f19ef78a5a8e48dd732da4b5e243535e4dd134fe5108d6957743b4a3c40bb976b93e0fd05b325e9",
+          "sha256": "88e5f00e6215085b04837fac02a83e1d79518f3ac5d6dfa64703932b83a53455",
+          "sha1": "843e10edf5ede7a574c62921461da99f54c5c3ee",
+          "md5": "f63a16f5808b33fdd3245af72db1bebc"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.work",
+          "module": "work-runtime",
+          "version": {
+            "requires": "2.8.1"
+          }
+        },
+        {
+          "group": "com.google.android.gms",
+          "module": "play-services-location",
+          "version": {
+            "requires": "21.0.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.8.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "TLKit-22.3.23101001.aar",
+          "url": "TLKit-22.3.23101001.aar",
+          "size": 10782292,
+          "sha512": "4d5bf283d0be297c77d7594a53f70caedd0fd9362eeded624f19ef78a5a8e48dd732da4b5e243535e4dd134fe5108d6957743b4a3c40bb976b93e0fd05b325e9",
+          "sha256": "88e5f00e6215085b04837fac02a83e1d79518f3ac5d6dfa64703932b83a53455",
+          "sha1": "843e10edf5ede7a574c62921461da99f54c5c3ee",
+          "md5": "f63a16f5808b33fdd3245af72db1bebc"
+        }
+      ]
+    }
+  ]
+}
