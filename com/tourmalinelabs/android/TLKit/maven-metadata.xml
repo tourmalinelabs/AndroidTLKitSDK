@@ -3,8 +3,9 @@
   <groupId>com.tourmalinelabs.android</groupId>
   <artifactId>TLKit</artifactId>
   <versioning>
-    <release>23.0.24032100</release>
+    <release>23.0.24052900</release>
     <versions>
+      <version>23.0.24052900</version>
       <version>23.0.24032100</version>
       <version>22.3.23102601</version>
       <version>22.3.23101001</version>
